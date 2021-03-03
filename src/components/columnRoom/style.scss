@@ -1,0 +1,22 @@
+.block-room {
+  height: 305px;
+  padding: 0;
+  overflow-y: auto;
+
+  &__room-info-block {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f3f6fb;
+    border-radius: 15px;
+
+    img {
+      margin-right: 15px;
+    }
+
+    &__room-lastMSG {
+      font-size: 14px;
+    }
+  }
+}

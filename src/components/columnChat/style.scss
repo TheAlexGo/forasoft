@@ -1,0 +1,29 @@
+.chat-block {
+  position: relative;
+  height: 100%;
+  input {
+    position: absolute;
+    bottom: 35px;
+    width: -webkit-fill-available;
+    margin: 0 10px;
+  }
+}
+
+.block-client {
+  height: 305px;
+  padding: 0;
+  overflow-y: auto;
+
+  &__client-info-block {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f3f6fb;
+    border-radius: 15px;
+
+    img {
+      margin-right: 15px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import Users from "./Users";
+import {BUTTON_VALUE, INPUT_PLACEHOLDER} from "../../constants/C_Chat";
+import Messages from "./Messages";
 
 class ColumnChat extends React.Component {
   constructor(props) {
@@ -9,33 +10,33 @@ class ColumnChat extends React.Component {
     }
   }
 
-  infoChat() {
-    return(
-      this.state.isActive ? <Users clients={[
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-        {name: 'Alex', isOnline: true},
-      ]} /> : null
-    )
-  }
 
-  handleClick() {
-    this.setState({
-      isActive: !this.state.isActive
-    })
-  }
 
   render() {
     return(
       <div className="chat-block">
-        <h6 onClick={() => this.handleClick()}>Комната: #123</h6>
-        {this.infoChat()}
-        <input type="text"/>
+        <div className="chat-block__wrapper">
+          <h6>Комната: #123</h6>
+          <div className="chat-block__wrapper__chat-block">
+            <Messages messages={[{
+              userName: 'Alex',
+              userMsg: 'Первое сообщение',
+              userClass: 'me',
+            },
+              {
+                userName: 'Pavel',
+                userMsg: 'Второе сообщение',
+                userClass: null,
+              }]}/>
+          </div>
+          <div className="chat-block__wrapper__input-block">
+            <input type="text" placeholder={ INPUT_PLACEHOLDER } />
+            <button type="submit">
+              <span>{ BUTTON_VALUE }</span>
+              <img width="15" height="15" src="./send-arrow.svg" alt="Send"/>
+            </button>
+          </div>
+        </div>
       </div>
     )
   }

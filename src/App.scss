@@ -43,12 +43,11 @@
       }
 
       h6 {
-        margin: 15px;
-        text-align: center;
+        margin: 15px 0;
       }
 
       &__left {
-        width: 25%;
+        width: 20%;
 
         &__profile-block {
           display: flex;
@@ -65,13 +64,41 @@
       &__center {
         width: 60%;
         background-color: #f3f6fb;
-        border-radius: 15px;
+        border-radius: 20px;
         margin: 0 30px;
       }
 
       &__right {
-        width: 25%;
+        width: 20%;
       }
+    }
+  }
+
+  .join-block {
+    display: flex;
+    flex-flow: column;
+    min-width: 250px;
+
+    input {
+      width: 100%;
+      border: 1px solid #dcdde1;
+      box-shadow: 0 0 2px #dcdde1;
+      border-radius: 5px;
+      color: #888fa3;
+      padding: 10px 20px;
+      margin-bottom: 15px;
+    }
+
+    input::placeholder {
+      color: #888fa3;
+    }
+
+    &__button {
+      background-color: #004dfc;
+      border: 0;
+      border-radius: 8px;
+      color: #ffffff;
+      padding: 10px 20px;
     }
   }
 }

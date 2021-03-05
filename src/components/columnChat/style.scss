@@ -1,11 +1,124 @@
 .chat-block {
-  position: relative;
   height: 100%;
-  input {
-    position: absolute;
-    bottom: 35px;
-    width: -webkit-fill-available;
-    margin: 0 10px;
+
+  &__wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 20px 30px;
+
+    &__chat-block {
+      height: 100%;
+
+      .message-block {
+        width: fit-content;
+        display: flex;
+        flex-flow: row;
+
+        img {
+          margin: 32px 10px 0 0;
+        }
+
+        &__user-info {
+          color: #505a70;
+
+          &__message {
+            div {
+              background-color: #fff;
+              padding: 15px;
+              border-radius: 14px;
+              box-shadow: 0 3px 5px #e2e2e2;
+              height: fit-content;
+              font-weight: 100;
+            }
+          }
+
+          &__time {
+            font-size: 12px;
+            font-weight: 500;
+            color: #8a92a5;
+            margin-top: 5px;
+          }
+        }
+      }
+
+      .me {
+        display: flex;
+        justify-content: flex-end;
+
+        .message-block {
+          flex-flow: row-reverse;
+          &__user-info {
+            display: flex;
+            flex-flow: column;
+            align-items: flex-end;
+
+            &__message {
+              div {
+                background-color: #1a233b;
+                color: #fafafb;
+              }
+            }
+          }
+
+          img {
+            margin: 32px 0 0 10px;
+          }
+        }
+      }
+    }
+
+    &__input-block{
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #fbfcff;
+      box-shadow: 0 0 10px #f2f7ff;
+      border-radius: 10px;
+      width: 100%;
+
+      input {
+        width: 83%;
+        border: 1px solid #dcdde1;
+        box-shadow: 0 0 2px #dcdde1;
+        border-radius: 5px;
+        color: #888fa3;
+        padding: 10px 20px;
+      }
+
+      input::placeholder {
+        color: #888fa3;
+      }
+
+      button {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-color: #004dfc;
+        border: 0;
+        border-radius: 8px;
+        color: #fff;
+        width: 15%;
+        padding: 10px 20px;
+        min-width: 105px;
+
+        span {
+          position: absolute;
+          left: 25px;
+        }
+
+        img {
+          margin-left: 5px;
+          position: absolute;
+          right: 20px;
+          top: 16px;
+        }
+      }
+    }
   }
 }
 

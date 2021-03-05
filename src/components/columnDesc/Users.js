@@ -1,9 +1,9 @@
 import User from "./User";
 import React from "react";
-import './style.scss'
+import '../columnChat/style.scss'
 
 const Users = ({ clients } ) => {
-  const clientsBlock = clients.map(client => <User name={client.name} isActive={client.isOnline}/>)
+  const clientsBlock = clients.map(client => <User name={client.name} isOnline={client.isOnline}/>)
   return (
     <div>
       <h6>Пользователи</h6>

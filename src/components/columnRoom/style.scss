@@ -8,8 +8,8 @@
     justify-content: flex-start;
     margin: 10px 0;
     padding: 10px;
-    background-color: #f3f6fb;
     border-radius: 15px;
+    cursor: pointer;
 
     img {
       margin-right: 15px;
@@ -18,5 +18,9 @@
     &__room-lastMSG {
       font-size: 14px;
     }
+  }
+
+  .active > &__room-info-block {
+    background-color: #f3f6fb;
   }
 }

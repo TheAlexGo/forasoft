@@ -9,7 +9,14 @@
     padding: 0 20px 30px;
 
     &__chat-block {
+      display: flex;
+      flex-flow: column;
+      overflow: auto;
       height: 100%;
+
+      > div {
+        margin: 10px 0;
+      }
 
       .message-block {
         width: fit-content;
@@ -22,6 +29,10 @@
 
         &__user-info {
           color: #505a70;
+
+          &__username {
+            font-weight: 500;
+          }
 
           &__message {
             div {

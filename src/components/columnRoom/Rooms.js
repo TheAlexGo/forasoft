@@ -1,9 +1,12 @@
 import React from "react";
 import '../columnRoom/style.scss'
 import Room from "./Room";
+import {useSelector} from "react-redux";
 
-const Rooms = ({ rooms } ) => {
-  const clientsBlock = rooms.map((room, index) => <Room name={room.name} lastMSG={room.lastMSG} key={index} />)
+const Rooms = () => {
+  const rooms = useSelector(state => state.chat.rooms)
+
+  const clientsBlock = rooms.map((room, index) => <Room numChat={room.numChat} lastMSG={room.lastMSG} key={index} />)
   return (
     <div>
       <h6>Комнаты</h6>

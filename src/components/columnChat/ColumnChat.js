@@ -10,24 +10,13 @@ class ColumnChat extends React.Component {
     }
   }
 
-
-
   render() {
     return(
       <div className="chat-block">
         <div className="chat-block__wrapper">
           <h6>Комната: #123</h6>
           <div className="chat-block__wrapper__chat-block">
-            <Messages messages={[{
-              userName: 'Alex',
-              userMsg: 'Первое сообщение',
-              userClass: 'me',
-            },
-              {
-                userName: 'Pavel',
-                userMsg: 'Второе сообщение',
-                userClass: null,
-              }]}/>
+            <Messages />
           </div>
           <div className="chat-block__wrapper__input-block">
             <input type="text" placeholder={ INPUT_PLACEHOLDER } />

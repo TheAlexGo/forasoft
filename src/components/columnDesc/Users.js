@@ -3,7 +3,11 @@ import React from "react";
 import '../columnChat/style.scss'
 
 const Users = ({ clients } ) => {
-  const clientsBlock = clients.map(client => <User name={client.name} isOnline={client.isOnline}/>)
+  const clientsBlock = clients.map((client, index) =>
+    <User
+      name={client.name}
+      isOnline={client.isOnline}
+      key={index} />)
   return (
     <div>
       <h6>Пользователи</h6>

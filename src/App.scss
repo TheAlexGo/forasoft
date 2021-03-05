@@ -1,0 +1,105 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #dfe7f0;
+  }
+
+
+  &__body-block {
+    display: flex;
+    justify-items: center;
+    flex-flow: column;
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 1400px;
+    width: 100%;
+    height: 95%;
+    box-shadow: 0 0 10px rgb(0, 0, 0, .1);
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+
+      h3 {
+        margin: 10px 0 30px;
+        text-align: center;
+      }
+
+      h6 {
+        margin: 15px 0;
+      }
+
+      &__left {
+        width: 20%;
+
+        &__profile-block {
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          background-color: #f5f8fc;
+          border: 2px solid #dfe7f0;
+          height: 200px;
+          border-radius: 20px;
+        }
+      }
+
+      &__center {
+        width: 60%;
+        background-color: #f3f6fb;
+        border-radius: 20px;
+        margin: 0 30px;
+      }
+
+      &__right {
+        width: 20%;
+      }
+    }
+  }
+
+  .join-block {
+    display: flex;
+    flex-flow: column;
+    min-width: 250px;
+
+    input {
+      width: 100%;
+      border: 1px solid #dcdde1;
+      box-shadow: 0 0 2px #dcdde1;
+      border-radius: 5px;
+      color: #888fa3;
+      padding: 10px 20px;
+      margin-bottom: 15px;
+    }
+
+    input::placeholder {
+      color: #888fa3;
+    }
+
+    &__button {
+      background-color: #004dfc;
+      border: 0;
+      border-radius: 8px;
+      color: #ffffff;
+      padding: 10px 20px;
+    }
+  }
+}
+

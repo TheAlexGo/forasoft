@@ -20,7 +20,7 @@ const ColumnChat = () => {
   return(
     <div className="chat-block">
       <div className="chat-block__wrapper">
-        <h6>Комната: #123</h6>
+        <h6>Комната: #{currentChatID}</h6>
         <div className="chat-block__wrapper__chat-block">
           <Messages />
         </div>

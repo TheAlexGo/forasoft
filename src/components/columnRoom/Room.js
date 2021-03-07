@@ -2,6 +2,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {setChatID} from "../../store/actions/chatActions";
 import socket from "../../server_socket/socket";
 import {A_JOIN_CHAT} from "../../constants/C_Server_Socket";
+import {logo} from "../../assets/assets";
+import {Link} from "react-router-dom";
+import axios from "axios";
 
 const Room = ({ chatID, lastMSG } ) => {
   const dispatch = useDispatch();
@@ -9,32 +12,36 @@ const Room = ({ chatID, lastMSG } ) => {
   const username = useSelector(state => state.chat.username);
   const currentChatID = useSelector(state => state.chat.currentChat);
   const classRoom = chatID === currentChatID ? 'active' : null;
+
+  const url = `/rooms/${chatID}`;
+
   const changeRoom = async () => {
     const obj = {
       chatID,
       username
     }
-    console.log(obj);
-
     socket.emit(A_JOIN_CHAT, obj);
-    // const { data } = await axios.get(`/rooms/${obj.chatID}`)
-    // dispatch(setRooms(data.rooms));
     dispatch(setChatID(chatID));
+
+    await axios.get(url);
   }
   return(
-    <div className={classRoom} onClick={changeRoom}>
-      <div className="block-room__room-info-block" >
-        <img src="./logo512.png" width="50" height="50" alt="logo"/>
-        <div>
-          <div className="block-room__room-info-block__room-name">
-            #{chatID}
-          </div>
-          <div className="block-room__room-info-block__room-lastMSG">
-            {lastMSG}
+    <Link onClick={changeRoom} to={url}>
+      <div className={classRoom} >
+        <div className="block-room__room-info-block" >
+          <img src={logo} width="50" height="50" alt="logo"/>
+          <div>
+            <div className="block-room__room-info-block__room-name">
+              #{chatID}
+            </div>
+            <div className="block-room__room-info-block__room-lastMSG">
+              {lastMSG}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
+
   )
 }
 

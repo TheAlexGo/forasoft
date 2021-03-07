@@ -31,7 +31,7 @@ const rooms = new Map();
 // })
 
 app.post('/rooms', (req, res) => {
-  const {username, chatID} = req.body;
+  const {chatID} = req.body;
 
   if(!rooms.has(chatID)) {
     rooms.set(
@@ -44,6 +44,14 @@ app.post('/rooms', (req, res) => {
       );
   }
   res.send(rooms);
+})
+
+app.get('/rooms/:id', (req, res) => {
+  const data = req.params;
+  const roomID = data.id;
+  const dataRoom = rooms.get(roomID);
+  console.log(dataRoom);
+  res.send(roomID);
 })
 
 io.on('connection', (socket) => {
@@ -80,7 +88,7 @@ io.on('connection', (socket) => {
     io.sockets.in(chatID).emit('A_SET_MESSAGES', transformList(rooms));
   })
   socket.on('disconnect', () => {
-    rooms.forEach((value, chatID) => {
+    rooms.forEach((value) => {
 
       if(value.users.get(socket.id) && value.users.get(socket.id).isOnline) {
         value.users.get(socket.id).isOnline = false
@@ -99,3 +107,7 @@ function transformList(rooms) {
   )
   return new_rooms;
 }
+
+// function transformListRoom(room) {
+//   return {...room, users: [...room.users.values()]}
+// }

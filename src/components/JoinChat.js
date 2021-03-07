@@ -24,11 +24,6 @@ const JoinChat = () => {
     dispatch(setUsername(username))
     dispatch(setChatID(Number(chatID)))
     socket.emit(A_JOIN_CHAT, obj);
-
-    // const { data } = await axios.get(`/rooms/${obj.chatID}`)
-    // console.log(data.rooms);
-    //
-    // dispatch(setRooms(data.rooms));
     dispatch(auth());
   }
 

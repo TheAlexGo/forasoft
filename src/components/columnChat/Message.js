@@ -1,12 +1,10 @@
+import {logo} from "../../assets/assets";
+
 const Message = ({ userName, userMsg, userClass, messageTime }) => {
-  // const userClass = 'me';
-
-
-
   return(
     <div className={userClass}>
       <div className="message-block">
-        <img src="./logo512.png" alt="logo" width="40" height="40" />
+        <img src={logo} alt="logo" width="40" height="40" />
         <div className="message-block__user-info">
           <div className="message-block__user-info__username">
             { userName }

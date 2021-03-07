@@ -4,6 +4,7 @@ import {A_SEND_MESSAGE, A_SET_MESSAGES} from "../../constants/C_Server_Socket";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addMessage} from "../../store/actions/chatActions";
+import {arrow} from "../../assets/assets";
 
 const SendMessageForm = () => {
   const [message, setMessage] = React.useState('');
@@ -70,7 +71,7 @@ const SendMessageForm = () => {
       />
       <button type="submit" onClick={sendMessage}>
         <span>{ BUTTON_VALUE }</span>
-        <img width="15" height="15" src="./send-arrow.svg" alt="Send"/>
+        <img width="15" height="15" src={arrow} alt="Send"/>
       </button>
     </form>
   )

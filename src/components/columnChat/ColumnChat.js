@@ -1,34 +1,33 @@
 import React from "react";
-import {BUTTON_VALUE, INPUT_PLACEHOLDER} from "../../constants/C_Chat";
 import Messages from "./Messages";
+import SendMessageForm from "./SendMessageForm";
+import {useSelector} from "react-redux";
+import {useMemo} from "react";
 
-class ColumnChat extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isActive: false,
-    }
-  }
+const ColumnChat = () => {
+  const currentChatID = useSelector(state => state.chat.currentChat);
+  const rooms = useSelector(state => state.chat.rooms);
+  const messages = useMemo(() =>
+    rooms.find(room => room.chatID === currentChatID)
+    ? rooms.find(room => room.chatID === currentChatID).messages
+    : [], [currentChatID, rooms]);
 
-  render() {
-    return(
-      <div className="chat-block">
-        <div className="chat-block__wrapper">
-          <h6>Комната: #123</h6>
-          <div className="chat-block__wrapper__chat-block">
-            <Messages />
-          </div>
-          <div className="chat-block__wrapper__input-block">
-            <input type="text" placeholder={ INPUT_PLACEHOLDER } />
-            <button type="submit">
-              <span>{ BUTTON_VALUE }</span>
-              <img width="15" height="15" src="./send-arrow.svg" alt="Send"/>
-            </button>
-          </div>
+  React.useEffect(() => {
+    document.querySelector('.chat-block__wrapper__chat-block').scrollTop =
+      document.querySelector('.chat-block__wrapper__chat-block').scrollHeight
+  }, [messages])
+
+  return(
+    <div className="chat-block">
+      <div className="chat-block__wrapper">
+        <h6>Комната: #123</h6>
+        <div className="chat-block__wrapper__chat-block">
+          <Messages />
         </div>
+        <SendMessageForm />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ColumnChat

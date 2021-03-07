@@ -5,10 +5,7 @@ class ColumnChat extends React.Component {
   render() {
     return(
       <div className="">
-        <Users clients={[
-          {name: 'Alex', isOnline: true},
-          {name: 'Pavel', isOnline: false},
-        ]} />
+        <Users />
       </div>
     )
   }

@@ -8,6 +8,10 @@
     height: 100%;
     padding: 0 20px 30px;
 
+    h6 {
+      text-align: center;
+    }
+
     &__chat-block {
       display: flex;
       flex-flow: column;
@@ -29,6 +33,7 @@
 
         &__user-info {
           color: #505a70;
+          max-width: 450px;
 
           &__username {
             font-weight: 500;
@@ -41,6 +46,7 @@
               border-radius: 14px;
               box-shadow: 0 3px 5px #e2e2e2;
               height: fit-content;
+              width: fit-content;
               font-weight: 100;
             }
           }

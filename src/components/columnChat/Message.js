@@ -1,5 +1,7 @@
-const Message = ({ userName, userMsg, userClass }) => {
+const Message = ({ userName, userMsg, userClass, messageTime }) => {
   // const userClass = 'me';
+
+
 
   return(
     <div className={userClass}>
@@ -15,7 +17,7 @@ const Message = ({ userName, userMsg, userClass }) => {
             </div>
           </div>
           <div className="message-block__user-info__time">
-            22:23, 04.03.2021
+            { messageTime }
           </div>
         </div>
       </div>

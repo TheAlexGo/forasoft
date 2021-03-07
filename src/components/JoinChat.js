@@ -1,29 +1,55 @@
-import {ID_CHAT, JOIN_BUTTON, NAME_USER} from "../constants/C_Join";
+import {ID_CHAT, JOIN_BUTTON, JOIN_BUTTON_LOADING, NAME_USER} from "../constants/C_Join";
 import {useDispatch} from "react-redux";
 import React from "react";
 import axios from "axios";
-import {auth, setChatID, setUsername} from "../store/actions/chatActions";
+import {auth, setChatID, setUsername, joinUser, leaveUser} from "../store/actions/chatActions";
+import socket from '../server_socket/socket'
+import {A_JOIN_CHAT, A_JOINED_CHAT, A_SET_USERS} from "../constants/C_Server_Socket";
 
 const JoinChat = () => {
   const [username, setName] = React.useState('');
   const [chatID, setID] = React.useState('');
+  const [isLoading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
 
-  const onJoin = () => {
-    if(!username || !chatID) return alert('Заполните все поля');
-    axios.post('/rooms',{
-      username,
-      chatID
-    }).then(() => {
-      dispatch(setUsername(username))
-      dispatch(setChatID(Number(chatID)))
-      dispatch(auth())
-    });
-
+  const obj = {
+    username,
+    chatID
   }
 
+  const onJoin = async () => {
+    if(!username || !chatID) return alert('Заполните все поля');
+    setLoading(true);
+    await axios.post('/rooms',obj).then();
+    dispatch(setUsername(username))
+    dispatch(setChatID(Number(chatID)))
+    socket.emit(A_JOIN_CHAT, obj);
+
+    // const { data } = await axios.get(`/rooms/${obj.chatID}`)
+    // console.log(data.rooms);
+    //
+    // dispatch(setRooms(data.rooms));
+    dispatch(auth());
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  React.useEffect(() => {
+    socket.on(A_JOINED_CHAT, rooms => {
+      console.log('Новый польователь: ', rooms);
+      dispatch(joinUser(rooms));
+    })
+
+    socket.on(A_SET_USERS, rooms => {
+      console.log('Пользователь вышел: ', rooms);
+      dispatch(leaveUser(rooms));
+    })
+  }, [dispatch])
+
   return(
-    <div className="join-block">
+    <form className="join-block" onSubmit={handleSubmit}>
       <input
         className="join-block__name"
         type="text"
@@ -38,10 +64,15 @@ const JoinChat = () => {
         value={chatID}
         onChange={e => setID(e.target.value)}
       />
-      <button onClick={onJoin} className="join-block__button">
-        {JOIN_BUTTON}
+      <button
+        disabled={isLoading}
+        onClick={onJoin}
+        className="join-block__button"
+        type="submit"
+      >
+        {!isLoading ? JOIN_BUTTON : JOIN_BUTTON_LOADING}
       </button>
-    </div>
+    </form>
   )
 }
 

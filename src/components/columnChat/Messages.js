@@ -4,15 +4,21 @@ import Message from "./Message";
 import {useSelector} from "react-redux";
 
 const Messages = () => {
+  const username = useSelector(state => state.chat.username);
   const currentChat = useSelector(state => state.chat.currentChat);
-  console.log(currentChat)
-  const messages = useSelector(state => state.chat.rooms.find(room => room.numChat === currentChat).messages)
+  const rooms = useSelector(state => state.chat.rooms);
+  const messages = rooms.find(room => room.chatID === currentChat)
+    ? rooms.find(room => room.chatID === currentChat).messages
+    : [];
+
+
   return messages.map((message, index) =>
   {
-    const userClass = message.user_id === 'MASASKDSAD' ? 'me' : null;
+    const userClass = message.user_name === username ? 'me' : null;
     return <Message
       userName={message.user_name}
       userMsg={message.user_message}
+      messageTime={message.message_time}
       userClass={userClass}
       key={index}
     />

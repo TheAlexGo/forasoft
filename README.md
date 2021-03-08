@@ -14,7 +14,7 @@ Clone this project to get started
 
 To install all the packages you need
 
-### `node server.js`
+### `node src/server_socket/server.js`
 
 Runs the server script 
 

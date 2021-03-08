@@ -2,9 +2,9 @@ import {ID_CHAT, JOIN_BUTTON, JOIN_BUTTON_LOADING, NAME_USER} from "../constants
 import {useDispatch} from "react-redux";
 import React from "react";
 import axios from "axios";
-import {auth, setChatID, setUsername, joinUser, leaveUser} from "../store/actions/chatActions";
+import {auth, setChatID, setUsername} from "../store/actions/chatActions";
 import socket from '../server_socket/socket'
-import {A_JOIN_CHAT, A_JOINED_CHAT, A_SET_USERS} from "../constants/C_Server_Socket";
+import {A_JOIN_CHAT} from "../constants/C_Server_Socket";
 
 const JoinChat = () => {
   const [username, setName] = React.useState('');
@@ -19,7 +19,9 @@ const JoinChat = () => {
 
   const onJoin = async () => {
     if(!username || !chatID) return alert('Заполните все поля');
+
     setLoading(true);
+
     await axios.post('/rooms',obj).then();
     dispatch(setUsername(username))
     dispatch(setChatID(Number(chatID)))
@@ -30,18 +32,6 @@ const JoinChat = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
-
-  React.useEffect(() => {
-    socket.on(A_JOINED_CHAT, rooms => {
-      console.log('Новый польователь: ', rooms);
-      dispatch(joinUser(rooms));
-    })
-
-    socket.on(A_SET_USERS, rooms => {
-      console.log('Пользователь вышел: ', rooms);
-      dispatch(leaveUser(rooms));
-    })
-  }, [dispatch])
 
   return(
     <form className="join-block" onSubmit={handleSubmit}>

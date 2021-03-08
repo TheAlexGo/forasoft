@@ -1,9 +1,8 @@
 import {BUTTON_VALUE, INPUT_PLACEHOLDER} from "../../constants/C_Chat";
 import socket from "../../server_socket/socket";
-import {A_SEND_MESSAGE, A_SET_MESSAGES} from "../../constants/C_Server_Socket";
+import {A_SEND_MESSAGE} from "../../constants/C_Server_Socket";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../../store/actions/chatActions";
+import {useSelector} from "react-redux";
 import {arrow} from "../../assets/assets";
 
 const SendMessageForm = () => {
@@ -14,8 +13,6 @@ const SendMessageForm = () => {
     ? rooms.find(room => room.chatID === chatID).messages
     : [];
   const username = useSelector(state => state.chat.username);
-
-  const dispatch = useDispatch();
 
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
@@ -38,6 +35,8 @@ const SendMessageForm = () => {
         messages
       }
 
+      setMessage('');
+
       socket.emit(A_SEND_MESSAGE, obj);
     }
   }
@@ -53,13 +52,8 @@ const SendMessageForm = () => {
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
 
-    socket.on(A_SET_MESSAGES, rooms => {
-      setMessage('');
-      dispatch(addMessage(rooms));
-    })
-
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, [dispatch])
+  }, [])
 
   return(
     <form className="chat-block__wrapper__input-block" onSubmit={handleSubmit}>

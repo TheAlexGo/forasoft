@@ -1,10 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import {setChatID} from "../../store/actions/chatActions";
-import socket from "../../server_socket/socket";
-import {A_JOIN_CHAT} from "../../constants/C_Server_Socket";
 import {logo} from "../../assets/assets";
 import {Link} from "react-router-dom";
-import axios from "axios";
+import socket from "../../server_socket/socket";
+import {A_JOIN_CHAT} from "../../constants/C_Server_Socket";
 
 const Room = ({ chatID, lastMSG } ) => {
   const dispatch = useDispatch();
@@ -15,15 +14,14 @@ const Room = ({ chatID, lastMSG } ) => {
 
   const url = `/rooms/${chatID}`;
 
-  const changeRoom = async () => {
+  const changeRoom = () => {
     const obj = {
       chatID,
       username
     }
+
     socket.emit(A_JOIN_CHAT, obj);
     dispatch(setChatID(chatID));
-
-    await axios.get(url);
   }
   return(
     <Link onClick={changeRoom} to={url}>

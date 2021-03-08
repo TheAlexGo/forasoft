@@ -110,28 +110,11 @@ const defaultState = {
   username: '',
   currentChat: null,
   isAuth: false,
-  rooms: [
-    {
-    chatID: 123,
-    users: [
-      {
-        name: '',
-        isOnline: null,
-      }
-    ],
-    messages: [
-      {
-        user_id: 'MASASKDSAD',
-        user_name: 'Alex',
-        user_message: 'Первое сообщение'
-      }
-    ],
-    lastMSG: 'Второе сообщение'
-  },
-  ],
+  rooms: [],
 };
 
 const chatReducer = (state = defaultState, action) => {
+  let new_rooms = []
   switch (action.type) {
     case AUTHENTICATED:
       return {
@@ -159,19 +142,25 @@ const chatReducer = (state = defaultState, action) => {
         rooms: [...action.payload]
       }
     case JOIN_USER:
+      new_rooms = getCorrectRooms(action)
+      console.log('Пользователь присоединился')
       return {
         ...state,
-        rooms: [...action.payload]
+        rooms: new_rooms
       }
     case LEAVE_USER:
+      new_rooms = getCorrectRooms(action)
+      console.log('Пользователь вышел')
       return {
         ...state,
-        rooms: [...action.payload]
+        rooms: new_rooms
       }
     case ADD_MESSAGE:
+      new_rooms = getCorrectRooms(action)
+      console.log('Новое сообщение')
       return {
         ...state,
-        rooms: [...action.payload]
+        rooms: new_rooms
       }
     default:
       return state;
@@ -179,3 +168,20 @@ const chatReducer = (state = defaultState, action) => {
 }
 
 export default chatReducer;
+
+function getCorrectRooms(action) {
+  let new_rooms;
+  if(localStorage.rooms) {
+    const roomsLS = [{...action.payload}, ...JSON.parse(localStorage.rooms)]
+    new_rooms = roomsLS.filter((room1, index, self) => {
+      return index === self.findIndex((room2) => (
+        room2.chatID === room1.chatID
+      ))
+    })
+  } else {
+    new_rooms = [{...action.payload}]
+  }
+
+  localStorage.rooms = JSON.stringify(new_rooms);
+  return new_rooms
+}

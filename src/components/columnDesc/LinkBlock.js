@@ -5,11 +5,14 @@ import './style.scss'
 import {useSelector} from "react-redux";
 
 const LinkBlock = () => {
+  // компонент блока с ссылкой на чат
   const chatID = useSelector(state => state.chat.currentChat);
   const copyLink = () => {
+    // функция занесения ссылки в буфер обмена
     navigator.clipboard.writeText(document.querySelector('#out').value).then();
   }
 
+  // формирование ссылки на чат
   const url = `${window.location.protocol}//${window.location.host}/rooms/${chatID}?join=yes`;
 
   return(

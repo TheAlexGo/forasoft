@@ -1,3 +1,4 @@
+// константы для блока чата
 export const INPUT_PLACEHOLDER = "Введите ваше сообщение...";
 export const BUTTON_VALUE = "Send";
 export const BUTTON_VALUE_LINK = "Копировать";

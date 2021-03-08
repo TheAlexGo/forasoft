@@ -1,3 +1,4 @@
+// константы для redux-action-переменных
 export const AUTHENTICATED = 'AUTHENTICATED';
 export const UNAUTHENTICATED = 'UNAUTHENTICATED';
 export const SET_USERNAME = 'SET_USERNAME';

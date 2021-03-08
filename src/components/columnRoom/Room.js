@@ -6,15 +6,19 @@ import socket from "../../server_socket/socket";
 import {A_JOIN_CHAT} from "../../constants/C_Server_Socket";
 
 const Room = ({ chatID, lastMSG } ) => {
+  // компонент комнаты
+
   const dispatch = useDispatch();
 
   const username = useSelector(state => state.chat.username);
   const currentChatID = useSelector(state => state.chat.currentChat);
-  const classRoom = chatID === currentChatID ? 'active' : null;
+  const classRoom = chatID === currentChatID ? 'active' : null; // определение класса активности у комнаты
 
   const url = `/rooms/${chatID}`;
 
   const changeRoom = () => {
+    // функция смены комнаты
+
     const obj = {
       chatID,
       username

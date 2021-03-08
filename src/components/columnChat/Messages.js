@@ -4,6 +4,8 @@ import Message from "./Message";
 import {useSelector} from "react-redux";
 
 const Messages = () => {
+  // компонент сообщений
+
   const username = useSelector(state => state.chat.username);
   const currentChat = useSelector(state => state.chat.currentChat);
   const rooms = useSelector(state => state.chat.rooms);
@@ -11,7 +13,7 @@ const Messages = () => {
     ? rooms.find(room => room.chatID === currentChat).messages
     : [];
 
-
+  // формирование переменной из всех сообщений
   return messages.map((message, index) =>
   {
     const userClass = message.user_name === username ? 'me' : null;

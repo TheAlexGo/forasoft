@@ -4,8 +4,11 @@ import Room from "./Room";
 import {useSelector} from "react-redux";
 
 const Rooms = () => {
-  const rooms = useSelector(state => state.chat.rooms)
+  // компонент вывода комнат
 
+  const rooms = useSelector(state => state.chat.rooms) // получение компнат из хранилища
+
+  // формирования переменной с вёрсткой всех комнат
   const clientsBlock = rooms.map((room, index) => <Room chatID={room.chatID} lastMSG={room.lastMSG} key={index} />)
   return (
     <div>

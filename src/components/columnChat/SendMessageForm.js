@@ -6,6 +6,8 @@ import {useSelector} from "react-redux";
 import {arrow} from "../../assets/assets";
 
 const SendMessageForm = () => {
+  // компонент формы отправки сообщения
+
   const [message, setMessage] = React.useState('');
   const chatID = useSelector(state => state.chat.currentChat);
   const rooms = useSelector(state => state.chat.rooms);
@@ -21,7 +23,10 @@ const SendMessageForm = () => {
   const time = `${String(today.getHours()).padStart(2, '0')}:${String(today.getMinutes()).padStart(2, '0')}`;
 
   const sendMessage = () => {
+    // функция отправки сообщения
+
     if(message !== '') {
+      // добавление нового сообщения
       messages.push(
         {
           user_name: username,
@@ -42,16 +47,18 @@ const SendMessageForm = () => {
   }
 
   const handleSubmit = (e) => {
+    // отключение ивента submit
     e.preventDefault()
   }
 
   const onKeyDown = () => {
+    // при нажатии клавиши - фокус на input
     document.querySelector('.chat-block__wrapper__input-block input').focus();
   }
 
   React.useEffect(() => {
+    // включение и отключение ивента
     document.addEventListener('keydown', onKeyDown);
-
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [])
 

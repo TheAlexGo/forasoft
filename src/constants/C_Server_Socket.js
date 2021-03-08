@@ -1,3 +1,5 @@
+// константы action-переменных (для сервера и сокетов)
+export const A_LOGIN = 'A_LOGIN';
 export const A_JOIN_CHAT = 'A_JOIN_CHAT';
 export const A_JOINED_CHAT = 'A_JOINED_CHAT';
 export const A_SET_USERS = 'A_SET_USERS';

@@ -1,6 +1,7 @@
 import {logo} from "../../assets/assets";
 
 const User = ({ name, isOnline } ) => {
+  // компонент пользователя
   return(
     <div className="block-client__client-info-block">
       <img src={logo} width="50" height="50" alt="logo"/>

@@ -4,11 +4,13 @@ import '../columnChat/style.scss'
 import {useSelector} from "react-redux";
 
 const Users = () => {
+  // компонент списка пользователей
   const rooms = useSelector(state => state.chat.rooms); //
   const currentChatID = useSelector(state => state.chat.currentChat);
   const users = rooms.find(room => room.chatID === currentChatID) ?
     rooms.find(room => room.chatID === currentChatID).users : [];
 
+  // формирование переменной с блоками пользователей
   const clientsBlock = users.map((user, index) =>
     <User
       name={user.name}

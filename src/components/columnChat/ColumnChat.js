@@ -5,6 +5,8 @@ import {useSelector} from "react-redux";
 import {useMemo} from "react";
 
 const ColumnChat = () => {
+  // Компонент колонки чата: средняя колонка
+
   const currentChatID = useSelector(state => state.chat.currentChat);
   const rooms = useSelector(state => state.chat.rooms);
   const messages = useMemo(() =>
@@ -13,6 +15,7 @@ const ColumnChat = () => {
     : [], [currentChatID, rooms]);
 
   React.useEffect(() => {
+    // при получении сообщения - опускать чат к последнему сообщению
     document.querySelector('.chat-block__wrapper__chat-block').scrollTop =
       document.querySelector('.chat-block__wrapper__chat-block').scrollHeight
   }, [messages])

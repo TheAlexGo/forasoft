@@ -4,6 +4,7 @@ import ColumnChat from "./columnChat/ColumnChat";
 import ColumnDesc from "./columnDesc/ColumnDesc";
 
 const Main = () => {
+  // Основной компонент приложения
 
   return(
     <div className="App__body-block">

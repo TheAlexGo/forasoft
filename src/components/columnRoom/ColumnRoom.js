@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import Rooms from "./Rooms";
 
 const ColumnRoom = () => {
+  // компонент колонки с профилем и комнатами: левая колонка
 
   return(
     <div>

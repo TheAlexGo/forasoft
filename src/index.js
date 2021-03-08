@@ -7,6 +7,7 @@ import {store} from "./store/store";
 import {Provider} from "react-redux";
 
 ReactDOM.render(
+  // Подключаем провайдер хранилища для редакса
   <Provider store={store}>
     <App />
   </Provider>,

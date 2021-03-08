@@ -7,21 +7,25 @@ import socket from '../server_socket/socket'
 import {A_JOIN_CHAT} from "../constants/C_Server_Socket";
 
 const JoinChat = () => {
+  // Компонент входа в приложение
+
   const [username, setName] = React.useState('');
   const [chatID, setID] = React.useState('');
   const [isLoading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
 
-  const obj = {
-    username,
-    chatID
-  }
-
   const onJoin = async () => {
+    // функция входа в приложение
     if(!username || !chatID) return alert('Заполните все поля');
 
     setLoading(true);
 
+    // формирование объекта
+    const obj = {
+      username,
+      chatID
+    }
+    // отправка запроса на формирование комнаты
     await axios.post('/rooms',obj).then();
     dispatch(setUsername(username))
     dispatch(setChatID(Number(chatID)))
@@ -30,6 +34,7 @@ const JoinChat = () => {
   }
 
   const handleSubmit = (e) => {
+    // отключение ивента submit
     e.preventDefault()
   }
 

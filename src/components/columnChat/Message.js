@@ -1,6 +1,8 @@
 import {logo} from "../../assets/assets";
 
 const Message = ({ userName, userMsg, userClass, messageTime }) => {
+  // компонент сообщения
+
   return(
     <div className={userClass}>
       <div className="message-block">

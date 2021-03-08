@@ -2,15 +2,15 @@ import React from "react";
 import Users from "./Users";
 import LinkBlock from "./LinkBlock";
 
-class ColumnChat extends React.Component {
-  render() {
-    return(
-      <div className="desc-block">
-        <Users />
-        <LinkBlock />
-      </div>
-    )
-  }
+const ColumnDesc = () => {
+  // компонент колонки с чатом
+  return(
+    <div className="desc-block">
+      <Users />
+      <LinkBlock />
+    </div>
+  )
+
 }
 
-export default ColumnChat
+export default ColumnDesc

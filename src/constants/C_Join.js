@@ -1,3 +1,4 @@
+// конастанты для блока входа
 export const ID_CHAT = 'Введите ID чата...';
 export const NAME_USER = 'Введите Имя пользователя...';
 

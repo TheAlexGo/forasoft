@@ -10,6 +10,10 @@ In the project directory, you can run:
 
 Clone this project to get started
 
+### `npm install`
+
+To install all the packages you need
+
 ### `node server.js`
 
 Runs the server script 

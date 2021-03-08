@@ -6,6 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `git clone https://github.com/TheAlexGo/forasoft.git`
+
+Clone this project to get started
+
+### `node server.js`
+
+Runs the server script 
+
 ### `npm start`
 
 Runs the app in the development mode.\
